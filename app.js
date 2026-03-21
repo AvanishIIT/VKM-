@@ -24,6 +24,7 @@ function setLogo(shop) {
 function renderCategories(categories) {
   const grid = document.getElementById("categoriesGrid");
   grid.innerHTML = "";
+
   categories.forEach((category) => {
     const card = document.createElement("article");
     card.className = "card category-card";
@@ -38,8 +39,7 @@ function renderCategories(categories) {
   });
 }
 
-function renderProducts(products, whatsappNumber, shop.shop_name);
- {
+function renderProducts(products, whatsappNumber, shopName) {
   const grid = document.getElementById("productsGrid");
   grid.innerHTML = "";
 
@@ -80,6 +80,7 @@ Page: ${productPageUrl}`
 function renderPhones(phones) {
   const list = document.getElementById("phoneList");
   list.innerHTML = "";
+
   phones.forEach((phone) => {
     const li = document.createElement("li");
     li.textContent = phone;
@@ -97,7 +98,9 @@ function applyStorefront(shop, categories, products) {
   document.getElementById("heroText").textContent = shop.hero_description || "";
   document.getElementById("heroSideNote").textContent = shop.hero_side_note || "";
   document.getElementById("addressText").textContent = shop.address || "";
-  document.getElementById("footerText").textContent = `Copyright ${new Date().getFullYear()} ${shop.shop_name || "VKM Tools & Agri Mart"}. All rights reserved.`;
+  document.getElementById("footerText").textContent =
+    `Copyright ${new Date().getFullYear()} ${shop.shop_name || "VKM Tools & Agri Mart"}. All rights reserved.`;
+
   setLogo(shop);
 
   const phones = Array.isArray(shop.phones) ? shop.phones : [];
@@ -110,18 +113,28 @@ function applyStorefront(shop, categories, products) {
   }
 
   const whatsappNumber = String(shop.whatsapp_number || cleanPhone).replace(/[^\d]/g, "");
-  const whatsappMessage = encodeURIComponent(`Hello ${shop.shop_name || "VKM"}, I want to know more about your products.`);
-  const whatsappLink = whatsappNumber ? `https://wa.me/${whatsappNumber}?text=${whatsappMessage}` : "#";
+  const whatsappMessage = encodeURIComponent(
+    `Hello ${shop.shop_name || "VKM"}, I want to know more about your products.`
+  );
+  const whatsappLink = whatsappNumber
+    ? `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`
+    : "#";
+
   document.getElementById("whatsappButton").href = whatsappLink;
 
   renderCategories(categories);
-  renderProducts(products, whatsappLink);
+  renderProducts(products, whatsappNumber, shop.shop_name);
 }
 
 async function loadStorefront() {
   const loading = document.getElementById("pageStatus");
+
   try {
-    const [{ data: shop, error: shopError }, { data: categories, error: categoriesError }, { data: products, error: productsError }] = await Promise.all([
+    const [
+      { data: shop, error: shopError },
+      { data: categories, error: categoriesError },
+      { data: products, error: productsError }
+    ] = await Promise.all([
       supabaseClient.from("shop_settings").select("*").limit(1).maybeSingle(),
       supabaseClient.from("categories").select("*").order("display_order", { ascending: true }),
       supabaseClient.from("products").select("*").order("display_order", { ascending: true })
@@ -134,7 +147,9 @@ async function loadStorefront() {
     applyStorefront(shop || {}, categories || [], products || []);
     loading.textContent = "";
   } catch (error) {
-    loading.textContent = "Unable to load live store data. Run the Supabase SQL setup first, then refresh this page.";
+    loading.textContent =
+      "Unable to load live store data. Please check Supabase setup or app.js.";
+    console.error(error);
   }
 }
 
