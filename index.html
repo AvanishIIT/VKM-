@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VKM Tools & Agri Mart</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="site-body">
+  <div id="topbar" class="topbar"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="#">
+        <span id="logoBadge" class="logo-badge">VKM</span>
+        <span id="logoText"></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#shop-categories">Categories</a>
+        <a href="#shop-products">Products</a>
+        <a href="#shop-contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <p id="pageStatus" class="status page-status">Loading shop...</p>
+    </div>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-main">
+          <span id="heroTagline" class="eyebrow"></span>
+          <h1 id="heroHeading"></h1>
+          <p id="heroText" class="lead-text"></p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#shop-products">Browse Products</a>
+            <a id="callButton" class="btn btn-secondary" href="#shop-contact">Call Shop</a>
+          </div>
+          <div class="metrics">
+            <div class="metric">
+              <strong>Direct Buying</strong>
+              No customer login needed. Just view and contact VKM.
+            </div>
+            <div class="metric">
+              <strong>Trusted Range</strong>
+              Mechanical tools, pumps, spare parts, and agri machinery.
+            </div>
+            <div class="metric">
+              <strong>Local Support</strong>
+              Quick phone and WhatsApp enquiries for customers.
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <h2 id="aboutTitle"></h2>
+          <p id="aboutDescription"></p>
+          <p id="heroSideNote"></p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="shop-categories" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Shop Categories</h2>
+          <p class="section-note">Customers can directly browse the main product groups from here.</p>
+        </div>
+        <div id="categoriesGrid" class="categories"></div>
+      </div>
+    </section>
+
+    <section id="shop-products" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Featured Products</h2>
+          <p class="section-note">Highlight your best-selling items and let customers contact you to buy.</p>
+        </div>
+        <div id="productsGrid" class="products"></div>
+      </div>
+    </section>
+
+    <section id="shop-contact" class="contact">
+      <div class="container">
+        <div class="contact-box">
+          <h2>Contact VKM</h2>
+          <p>Customers can directly call, message, or visit your shop.</p>
+          <ul id="phoneList" class="contact-list"></ul>
+          <a id="whatsappButton" class="btn btn-primary" target="_blank" rel="noreferrer" href="#">WhatsApp Enquiry</a>
+          <p id="addressText" class="contact-address"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <p id="footerText"></p>
+      <p>Mechanical Tools | Agri Machinery | Spare Parts | Pumps</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

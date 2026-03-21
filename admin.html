@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VKM Seller Admin</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="brand-panel">
+        <h1>VKM Seller Admin</h1>
+        <p>Edit your shop separately from the customer website. Customer view stays clean and public.</p>
+      </div>
+
+      <div id="loginPanel" class="panel-card">
+        <h2>Seller Access</h2>
+        <p>Sign in with the seller email and password you create in Supabase Authentication.</p>
+        <div class="field">
+          <label for="adminEmail">Email</label>
+          <input id="adminEmail" type="email" placeholder="seller@example.com">
+        </div>
+        <div class="field">
+          <label for="adminPassword">Password</label>
+          <input id="adminPassword" type="password" placeholder="Enter seller password">
+        </div>
+        <div class="btn-row">
+          <button id="loginBtn" class="btn btn-primary" type="button">Open Admin</button>
+          <a class="btn btn-ghost" href="./index.html">Open User View</a>
+        </div>
+        <div id="loginStatus" class="status"></div>
+      </div>
+
+      <div id="editorPanel" class="hidden">
+        <div class="panel-card">
+          <h2>Store Details</h2>
+          <div class="field">
+            <label>Logo preview</label>
+            <img id="logoPreview" class="logo-preview hidden" alt="Shop logo preview">
+          </div>
+          <div class="field">
+            <label for="logoImage">Logo image URL</label>
+            <input id="logoImage" type="text">
+          </div>
+          <div class="field">
+            <label for="logoFile">Upload logo</label>
+            <input id="logoFile" type="file" accept="image/*">
+            <div class="upload-help">Paste a logo image URL or upload your logo file.</div>
+          </div>
+          <div class="field">
+            <label for="shopName">Shop name</label>
+            <input id="shopName" type="text">
+          </div>
+          <div class="field">
+            <label for="shopTagline">Tagline</label>
+            <input id="shopTagline" type="text">
+          </div>
+          <div class="field">
+            <label for="heroTitle">Hero title</label>
+            <input id="heroTitle" type="text">
+          </div>
+          <div class="field">
+            <label for="heroDescription">Hero description</label>
+            <textarea id="heroDescription"></textarea>
+          </div>
+          <div class="field">
+            <label for="aboutTitle">About section title</label>
+            <input id="aboutTitle" type="text">
+          </div>
+          <div class="field">
+            <label for="aboutDescription">About section description</label>
+            <textarea id="aboutDescription"></textarea>
+          </div>
+          <div class="field">
+            <label for="heroSideNote">Side note</label>
+            <textarea id="heroSideNote"></textarea>
+          </div>
+          <div class="field">
+            <label for="topNotice">Top notice bar</label>
+            <input id="topNotice" type="text">
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <h2>Contact Details</h2>
+          <div class="field">
+            <label for="phone1">Phone 1</label>
+            <input id="phone1" type="text">
+          </div>
+          <div class="field">
+            <label for="phone2">Phone 2</label>
+            <input id="phone2" type="text">
+          </div>
+          <div class="field">
+            <label for="phone3">Phone 3</label>
+            <input id="phone3" type="text">
+          </div>
+          <div class="field">
+            <label for="whatsappNumber">WhatsApp number</label>
+            <input id="whatsappNumber" type="text">
+          </div>
+          <div class="field">
+            <label for="address">Address</label>
+            <textarea id="address"></textarea>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <h2>Actions</h2>
+          <div class="btn-row">
+            <button id="saveBtn" class="btn btn-primary" type="button">Save Changes</button>
+            <button id="resetBtn" class="btn btn-secondary" type="button">Reset Demo</button>
+            <button id="logoutBtn" class="btn btn-ghost" type="button">Lock Admin</button>
+          </div>
+          <div id="saveStatus" class="status"></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <div id="editorWorkspace" class="hidden">
+        <section class="panel-card">
+          <h2>Categories</h2>
+          <div id="categoryEditors" class="collection"></div>
+          <div class="btn-row">
+            <button id="addCategory" class="btn btn-secondary" type="button">Add Category</button>
+          </div>
+        </section>
+
+        <section class="panel-card">
+          <h2>Products</h2>
+          <div id="productEditors" class="collection"></div>
+          <div class="btn-row">
+            <button id="addProduct" class="btn btn-secondary" type="button">Add Product</button>
+          </div>
+        </section>
+
+        <section class="panel-card">
+          <h2>Admin Info</h2>
+          <p>Customer page: <a class="mini-link" href="./index.html">index.html</a></p>
+          <p>Seller page: <a class="mini-link" href="./admin.html">admin.html</a></p>
+          <p>This version uses Supabase Auth, database tables, and storage so seller edits are saved online.</p>
+        </section>
+      </div>
+
+      <section id="lockedWorkspace" class="panel-card">
+        <h2>Seller Workspace Locked</h2>
+        <p>Open admin access to edit categories, products, prices, and contact details. The public user website remains separate.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
