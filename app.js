@@ -38,7 +38,8 @@ function renderCategories(categories) {
   });
 }
 
-function renderProducts(products, whatsappNumber, shopName) {
+function renderProducts(products, whatsappNumber, shop.shop_name);
+ {
   const grid = document.getElementById("productsGrid");
   grid.innerHTML = "";
 
