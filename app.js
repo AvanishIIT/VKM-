@@ -38,10 +38,26 @@ function renderCategories(categories) {
   });
 }
 
-function renderProducts(products, buyLink) {
+function renderProducts(products, whatsappNumber, shopName) {
   const grid = document.getElementById("productsGrid");
   grid.innerHTML = "";
+
   products.forEach((product) => {
+    const productPageUrl = window.location.href;
+    const message = encodeURIComponent(
+      `Hello ${shopName || "VKM"},
+I am interested in this product.
+
+Product: ${product.name}
+Tag: ${product.tag || "General"}
+Price: ${product.price || "Ask for price"}
+Page: ${productPageUrl}`
+    );
+
+    const productBuyLink = whatsappNumber
+      ? `https://wa.me/${whatsappNumber}?text=${message}`
+      : "#";
+
     const card = document.createElement("article");
     card.className = "card product-card";
     card.innerHTML = `
@@ -53,7 +69,7 @@ function renderProducts(products, buyLink) {
       <p>${escapeHtml(product.description)}</p>
       <div class="price-row">
         <span>${escapeHtml(product.price)}</span>
-        <a class="mini-link" target="_blank" rel="noreferrer" href="${buyLink}">Buy Now</a>
+        <a class="mini-link" target="_blank" rel="noreferrer" href="${productBuyLink}">Buy Now</a>
       </div>
     `;
     grid.appendChild(card);
